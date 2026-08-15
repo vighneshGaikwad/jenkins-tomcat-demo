@@ -35,11 +35,11 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying application to Tomcat'
-                sh 'cp target/jenkins-demo.war $(brew --prefix tomcat)/libexec/webapps/'
-            }
-        }
+    steps {
+        echo 'Deploying application to Tomcat'
+        sh 'cp target/jenkins-demo.war /opt/homebrew/opt/tomcat/libexec/webapps/'
+    }
+}
         stage('Verify') {
             steps {
                 echo 'Checking deployed application'
