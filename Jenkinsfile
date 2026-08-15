@@ -4,6 +4,10 @@ pipeline {
         jdk 'JDK-21'
         maven 'Maven-3'
     }
+    environment {
+        JAVA_HOME = "/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home"
+        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -33,7 +37,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying application to Tomcat'
-                // Uses Homebrew Tomcat path for macOS
                 sh 'cp target/jenkins-demo.war $(brew --prefix tomcat)/libexec/webapps/'
             }
         }
